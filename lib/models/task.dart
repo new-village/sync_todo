@@ -14,24 +14,23 @@ class Task {
   @HiveField(2)
   bool isCompleted;
 
-  @HiveField(3)
-  DateTime createdAt;
-
   @HiveField(4)
   DateTime? deadline;
 
   @HiveField(5)
   DateTime updated;
 
+  @HiveField(6)
+  String? notes;
+
   Task({
     String? id,
     required this.title,
     this.isCompleted = false,
-    DateTime? createdAt,
     this.deadline,
     DateTime? updated,
+    this.notes,
   }) : id = id ?? const Uuid().v4(),
-       createdAt = createdAt ?? DateTime.now(),
        updated = updated ?? DateTime.now();
 
   Task copyWith({
@@ -40,14 +39,15 @@ class Task {
     DateTime? deadline,
     bool deadlineSet = false, // 追加
     DateTime? updated,
+    String? notes,
   }) {
     return Task(
       id: id,
       title: title ?? this.title,
       isCompleted: isCompleted ?? this.isCompleted,
-      createdAt: createdAt,
       deadline: deadlineSet ? deadline : this.deadline, // 修正
       updated: updated ?? DateTime.now(),
+      notes: notes ?? this.notes,
     );
   }
 }

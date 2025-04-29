@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final tasks = await _taskRepository.getAllTasks();
 
     // 作成日時の新しい順にソート
-    tasks.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+    tasks.sort((a, b) => b.updated.compareTo(a.updated));
 
     setState(() {
       _tasks = tasks;

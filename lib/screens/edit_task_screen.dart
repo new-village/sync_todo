@@ -20,7 +20,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
   void initState() {
     super.initState();
     _titleController = TextEditingController(text: widget.task.title);
-    _noteController = TextEditingController();
+    _noteController = TextEditingController(text: widget.task.notes ?? '');
   }
 
   @override
@@ -34,6 +34,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
     setState(() => _isSaving = true);
     final updatedTask = widget.task.copyWith(
       title: _titleController.text.trim(),
+      notes: _noteController.text.trim(),
       updated: DateTime.now(),
     );
     await _taskRepository.updateTask(updatedTask);
@@ -150,7 +151,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
               ),
               const SizedBox(height: 20),
               Text(
-                '作成日時: ${widget.task.createdAt.toLocal().toString().substring(0, 16)}',
+                '最終更新日時: ${widget.task.updated.toLocal().toString().substring(0, 16)}',
                 style: TextStyle(fontSize: 13, color: theme.hintColor),
               ),
             ],
