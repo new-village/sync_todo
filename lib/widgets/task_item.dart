@@ -7,6 +7,7 @@ class TaskItem extends StatelessWidget {
   // 削除用コールバックは不要になったが、他の箇所のため残す
   final Function(String) onDelete;
   final void Function(Task) onTap; // 追加
+  final void Function(Task) onToday; // 追加
 
   const TaskItem({
     super.key,
@@ -14,6 +15,7 @@ class TaskItem extends StatelessWidget {
     required this.onToggle,
     required this.onDelete,
     required this.onTap, // 追加
+    required this.onToday, // 追加
   });
 
   @override
@@ -81,6 +83,25 @@ class TaskItem extends StatelessWidget {
             vertical: 0, // さらに高さを低く
           ),
           onTap: () => onTap(task), // 追加
+          trailing: IconButton(
+            icon: Icon(
+              Icons.today,
+              color:
+                  task.deadline != null &&
+                          DateUtils.isSameDay(
+                            task.deadline,
+                            DateTime(
+                              DateTime.now().year,
+                              DateTime.now().month,
+                              DateTime.now().day,
+                            ),
+                          )
+                      ? Colors.teal
+                      : Colors.grey,
+            ),
+            tooltip: '今日やる',
+            onPressed: () => onToday(task),
+          ),
         ),
       ),
     );

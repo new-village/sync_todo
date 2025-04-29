@@ -34,6 +34,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
     setState(() => _isSaving = true);
     final updatedTask = widget.task.copyWith(
       title: _titleController.text.trim(),
+      updated: DateTime.now(),
     );
     await _taskRepository.updateTask(updatedTask);
     if (!mounted) return;

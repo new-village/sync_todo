@@ -40,7 +40,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
 
     // 各行を個別のタスクとして保存
     for (var title in taskTitles) {
-      final task = Task(title: title);
+      final now = DateTime.now();
+      final task = Task(title: title, createdAt: now, updated: now);
       await _taskRepository.addTask(task);
     }
 
