@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sync_todo/models/task.dart';
 
+// チェックボックスやタイトルのTextStyleを共通定数化
+const kTaskTitleStyle = TextStyle(fontWeight: FontWeight.w600);
+
 class TaskItem extends StatelessWidget {
   final Task task;
   final Function(String) onToggle;
@@ -65,16 +68,15 @@ class TaskItem extends StatelessWidget {
           ),
           title: Text(
             task.title,
-            style: theme.textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.w600,
-              decoration: isCompleted ? TextDecoration.lineThrough : null,
-              color:
-                  isCompleted
-                      ? theme.colorScheme.onSurfaceVariant.withValues(
-                        alpha: 0.5,
-                      )
-                      : theme.colorScheme.onSurfaceVariant,
-            ),
+            style: theme.textTheme.titleMedium
+                ?.merge(kTaskTitleStyle)
+                .copyWith(
+                  decoration: isCompleted ? TextDecoration.lineThrough : null,
+                  color:
+                      isCompleted
+                          ? theme.colorScheme.onSurfaceVariant.withAlpha(128)
+                          : theme.colorScheme.onSurfaceVariant,
+                ),
           ),
           // subtitle: 作成日表示を削除
           minLeadingWidth: 0,

@@ -39,9 +39,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             .toList();
 
     // 各行を個別のタスクとして保存
-    for (var i = 0; i < taskTitles.length; i++) {
-      final now = DateTime.now();
-      final task = Task(title: taskTitles[i], updated: now);
+    for (var title in taskTitles) {
+      final task = Task(title: title);
       await _taskRepository.addTask(task);
     }
 

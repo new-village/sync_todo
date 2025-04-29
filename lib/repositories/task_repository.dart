@@ -18,15 +18,13 @@ class TaskRepository {
   // タスクを追加
   Future<void> addTask(Task task) async {
     final box = await _getTasksBox();
-    final now = DateTime.now();
-    await box.put(task.id, task.copyWith(updated: now));
+    await box.put(task.id, task);
   }
 
   // タスクを更新
   Future<void> updateTask(Task task) async {
     final box = await _getTasksBox();
-    final now = DateTime.now();
-    await box.put(task.id, task.copyWith(updated: now));
+    await box.put(task.id, task);
   }
 
   // タスクを削除
@@ -40,10 +38,9 @@ class TaskRepository {
     final box = await _getTasksBox();
     final task = box.get(id);
     if (task != null) {
-      final now = DateTime.now();
       await box.put(
         id,
-        task.copyWith(isCompleted: !task.isCompleted, updated: now),
+        task.copyWith(isCompleted: !task.isCompleted, updated: DateTime.now()),
       );
     }
   }

@@ -37,16 +37,16 @@ class Task {
     String? title,
     bool? isCompleted,
     DateTime? deadline,
-    bool deadlineSet = false, // 追加
     DateTime? updated,
     String? notes,
+    bool removeDeadline = false, // 追加: deadlineを明示的に消す場合
   }) {
     return Task(
       id: id,
       title: title ?? this.title,
       isCompleted: isCompleted ?? this.isCompleted,
-      deadline: deadlineSet ? deadline : this.deadline, // 修正
-      updated: updated ?? DateTime.now(),
+      deadline: removeDeadline ? null : (deadline ?? this.deadline),
+      updated: updated ?? this.updated,
       notes: notes ?? this.notes,
     );
   }

@@ -250,8 +250,8 @@ class _HomeScreenState extends State<HomeScreen> {
             );
             final updated =
                 isToday
-                    ? task.copyWith(deadline: null, deadlineSet: true)
-                    : task.copyWith(deadline: today, deadlineSet: true);
+                    ? task.copyWith(removeDeadline: true)
+                    : task.copyWith(deadline: today);
             await _taskRepository.updateTask(updated);
             await _loadTasks();
           },

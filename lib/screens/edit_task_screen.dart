@@ -107,20 +107,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                   ),
-                  decoration: const InputDecoration(
-                    labelText: 'タイトル',
-                    hintText: '例：週末の買い物',
-                    labelStyle: TextStyle(fontSize: 16),
-                    hintStyle: TextStyle(
-                      color: Colors.grey,
-                      fontStyle: FontStyle.italic,
-                    ),
-                    border: InputBorder.none,
-                    contentPadding: EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 10,
-                    ),
-                  ),
+                  decoration: kTaskInputDecoration,
                 ),
               ),
               const SizedBox(height: 18),
@@ -132,20 +119,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                 child: TextField(
                   controller: _noteController,
                   style: const TextStyle(fontSize: 16),
-                  decoration: const InputDecoration(
-                    labelText: 'メモ（任意）',
-                    hintText: '例：詳細や補足を記入できます',
-                    labelStyle: TextStyle(fontSize: 15),
-                    hintStyle: TextStyle(
-                      color: Colors.grey,
-                      fontStyle: FontStyle.italic,
-                    ),
-                    border: InputBorder.none,
-                    contentPadding: EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 10,
-                    ),
-                  ),
+                  decoration: kNoteInputDecoration,
                   maxLines: 3,
                 ),
               ),
@@ -233,3 +207,22 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
     );
   }
 }
+
+// 共通のInputDecoration定数
+const kTaskInputDecoration = InputDecoration(
+  labelText: 'タイトル',
+  hintText: '例：週末の買い物',
+  labelStyle: TextStyle(fontSize: 16),
+  hintStyle: TextStyle(color: Colors.grey, fontStyle: FontStyle.italic),
+  border: InputBorder.none,
+  contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+);
+
+const kNoteInputDecoration = InputDecoration(
+  labelText: 'メモ（任意）',
+  hintText: '例：詳細や補足を記入できます',
+  labelStyle: TextStyle(fontSize: 15),
+  hintStyle: TextStyle(color: Colors.grey, fontStyle: FontStyle.italic),
+  border: InputBorder.none,
+  contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+);
