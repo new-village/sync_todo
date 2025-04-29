@@ -148,7 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 },
                               ),
                             ),
-                            const SizedBox(width: 4),
+                            const SizedBox(width: 2),
                             Text(
                               '完了タスクも表示',
                               style: Theme.of(context).textTheme.bodySmall,
@@ -190,7 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 },
                               ),
                             ),
-                            const SizedBox(width: 4),
+                            const SizedBox(width: 2),
                             Text(
                               '完了タスクも表示',
                               style: Theme.of(context).textTheme.bodySmall,
